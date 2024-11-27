@@ -1,6 +1,6 @@
-import { CreatePostProps, PostProps } from "../@types"
+import { CreatePostProps, PostProps, EditPostDTO } from "../@types"
 
-const POST_MOCK_LIST: Array<PostProps> = [
+let POST_MOCK_LIST: Array<PostProps> = [
   {
     id: "1",
     thumbnail: "https://via.placeholder.com/150",
@@ -61,9 +61,32 @@ export function PostService() {
     POST_MOCK_LIST.push(newPost)
   }
 
+  async function editPost({ id, data }: EditPostDTO): Promise<void> {
+    const post = POST_MOCK_LIST.find(post => post.id === id)
+
+    const updatedPost = {
+      ...post!,
+      ...data
+    }
+
+    POST_MOCK_LIST = POST_MOCK_LIST.map(post => {
+      if (post.id === id) {
+        return updatedPost
+      }
+
+      return post
+    })
+  }
+
+  async function deletePost(id: string): Promise<void> {
+    POST_MOCK_LIST = POST_MOCK_LIST.filter(post => post.id !== id)
+  }
+
   return {
     listPosts,
     getPostById,
-    createPost
+    createPost,
+    editPost,
+    deletePost
   }
 }

@@ -11,7 +11,7 @@ export function HomeScreen({ }: AppScreenProps<'HomeScreen'>) {
   const { navigate }= useNavigation()
 
   function renderPost({ item }: { item: PostProps }) {
-    const { id, title, thumbnail, author, category } = item
+    const { id, title, thumbnail, author, category, content } = item
 
     return (
       <TouchableOpacityBox
@@ -32,6 +32,7 @@ export function HomeScreen({ }: AppScreenProps<'HomeScreen'>) {
           </Box>
 
           <Text mt="s8">{title} - {author}</Text>
+          <Text mt="s8">{content}</Text>
         </Box>
       </TouchableOpacityBox>
     );
