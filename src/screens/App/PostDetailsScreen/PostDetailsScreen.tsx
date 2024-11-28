@@ -1,30 +1,30 @@
-import { Screen, Text, TouchableOpacityBox } from "@components";
-import { useNavigation } from "@react-navigation/native";
-import { AppScreenProps } from "@routes";
-import { useGetPostDetails } from "@useCases";
+import { useNavigation } from '@react-navigation/native';
+import { useGetPostDetails } from '@useCases';
 
-export function PostDetailsScreen({ route }: AppScreenProps<'PostDetailsScreen'>) {
-  const { id } = route.params
+import { Button, Screen, Text } from '@components';
+import { AppScreenProps } from '@routes';
 
-  const { post, isLoading } = useGetPostDetails(id)
+export function PostDetailsScreen({
+  route,
+}: AppScreenProps<'PostDetailsScreen'>) {
+  const { id } = route.params;
 
-  const { navigate } = useNavigation()
-  
+  const { post, isLoading } = useGetPostDetails(id);
+
+  const { navigate } = useNavigation();
+
   function handlePressEditPoost() {
-    navigate('EditPostScreen', { id })
+    navigate('EditPostScreen', { id });
   }
-  
+
   return (
-    <Screen 
-      isLoading={isLoading} 
-      canGoBack 
+    <Screen
+      isLoading={isLoading}
+      canGoBack
       title={isLoading ? 'Carregando...' : post!.title}
       FooterComponent={
-        <TouchableOpacityBox onPress={handlePressEditPoost}>
-          <Text>Editar conteúdo</Text>
-        </TouchableOpacityBox>
-      }  
-    >
+        <Button text="Editar post" onPress={handlePressEditPoost} />
+      }>
       <Text>{post?.title}</Text>
       <Text>{post?.content}</Text>
     </Screen>

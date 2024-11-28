@@ -21,7 +21,7 @@ export interface ScreenProps extends BoxProps {
   titleComponent?: React.ReactNode;
   rightHeaderComponent?: React.ReactNode;
   footerContainerStyle?: BoxProps['style'];
-  customCanGoBack?: () => void
+  customCanGoBack?: () => void;
 }
 
 export const HORIZONTAL_PADDING = 24;
