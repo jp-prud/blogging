@@ -1,7 +1,9 @@
+import { Image } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import { useGetPostDetails } from '@useCases';
 
-import { Button, Screen, Text } from '@components';
+import { Box, Button, Icon, Screen, Text } from '@components';
 import { AppScreenProps } from '@routes';
 
 export function PostDetailsScreen({
@@ -21,12 +23,27 @@ export function PostDetailsScreen({
     <Screen
       isLoading={isLoading}
       canGoBack
+      rightHeaderComponent={<Icon name="close" />}
       title={isLoading ? 'Carregando...' : post!.title}
       FooterComponent={
         <Button text="Editar post" onPress={handlePressEditPoost} />
       }>
-      <Text>{post?.title}</Text>
-      <Text>{post?.content}</Text>
+      <Image
+        style={{
+          flex: 1,
+          maxHeight: 320,
+          borderRadius: 16,
+        }}
+        alt="Background Image"
+        source={{ uri: post?.thumbnail }}
+      />
+
+      <Box mt="s24" g="s8">
+        <Text preset="headingMedium">
+          {post?.title} - @{post?.author}
+        </Text>
+        <Text color="subtext">{post?.content}</Text>
+      </Box>
     </Screen>
   );
 }

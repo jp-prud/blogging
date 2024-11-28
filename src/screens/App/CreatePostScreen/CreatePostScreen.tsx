@@ -1,12 +1,12 @@
+import { useNavigation } from '@react-navigation/native';
 import { useCreatePost } from '@useCases';
 import { useForm } from 'react-hook-form';
 
 import { Box, Button, FormTextInput, Screen } from '@components';
 import { AppScreenProps } from '@routes';
-import { useNavigation } from '@react-navigation/native';
 
 export function CreatePostScreen({ }: AppScreenProps<'CreatePostScreen'>) {
-  const { navigate } = useNavigation()
+  const { navigate } = useNavigation();
 
   const { execute, isPending } = useCreatePost({
     onSuccess: () => navigate('HomeScreen'),
@@ -16,7 +16,7 @@ export function CreatePostScreen({ }: AppScreenProps<'CreatePostScreen'>) {
     defaultValues: {
       title: '',
       content: '',
-      thumbnail: 'teste',
+      thumbnail: '',
       category: '',
       author: '',
     },
@@ -33,6 +33,13 @@ export function CreatePostScreen({ }: AppScreenProps<'CreatePostScreen'>) {
       }
       scrollable>
       <Box gap="s16">
+        <FormTextInput
+          control={control}
+          label="Thumbnail"
+          name="thumbnail"
+          description="Insira a URL para o post."
+        />
+
         <FormTextInput
           control={control}
           label="Título"

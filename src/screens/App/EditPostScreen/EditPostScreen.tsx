@@ -32,6 +32,13 @@ export function EditPostScreen({ route }: AppScreenProps<'EditPostScreen'>) {
       <Box gap="s16">
         <FormTextInput
           control={control}
+          label="Thumbnail"
+          name="thumbnail"
+          description="Insira a thumbnail para o post."
+        />
+
+        <FormTextInput
+          control={control}
           label="Título"
           name="title"
           description="Insira o título para o post."
