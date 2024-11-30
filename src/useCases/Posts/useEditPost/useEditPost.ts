@@ -11,9 +11,9 @@ export function useEditPost({ onSuccess }: { onSuccess: () => void }) {
   const { mutateAsync, isPending } = useMutation<void, unknown, EditPostDTO>({
     mutationKey: [MutationKeys.UPDATE_POST],
     mutationFn: (updatePostInput: EditPostDTO) => editPost(updatePostInput),
-    onSuccess: async (_, { id }) => {
-      await queryClient.invalidateQueries({
-        queryKey: [[QueryKeys.LIST_POSTS], [QueryKeys.DETAILS_POST, { id }]],
+    onSuccess: (_, { id }) => {
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.LIST_POSTS, [QueryKeys.DETAILS_POST, { id }]],
       });
 
       onSuccess();

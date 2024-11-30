@@ -9,6 +9,7 @@ export function useListPosts() {
   const { data, isLoading, isError } = useQuery({
     queryKey: [QueryKeys.LIST_POSTS],
     queryFn: listPosts,
+    refetchOnMount: true,
   });
 
   return {
