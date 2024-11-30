@@ -75,5 +75,3 @@ Para expandir e aprimorar o projeto, os próximos passos incluem:
 Abaixo está um vídeo demonstrando a implementação atual do projeto, evidenciando suas principais funcionalidades em ação:
 
 [**Clique aqui para assistir ao vídeo**](https://www.youtube.com/watch?v=AYarZ1UenRM)
-
-Caso o vídeo não carregue, certifique-se de que ele está disponível no diretório ou repositório do projeto.
